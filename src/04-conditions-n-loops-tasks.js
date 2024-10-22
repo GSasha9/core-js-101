@@ -27,8 +27,18 @@
  *  21 => 'Fizz'
  *
  */
-function getFizzBuzz(/* num */) {
-  throw new Error('Not implemented');
+function getFizzBuzz(num) {
+  let str = '';
+  if (num % 3 === 0 && num % 5 === 0) {
+    str = 'FizzBuzz';
+  } else if (num % 5 === 0) {
+    str = 'Buzz';
+  } else if (num % 3 === 0) {
+    str = 'Fizz';
+  } else {
+    str = num;
+  }
+  return str;
 }
 
 
@@ -43,8 +53,9 @@ function getFizzBuzz(/* num */) {
  *   5  => 120
  *   10 => 3628800
  */
-function getFactorial(/* n */) {
-  throw new Error('Not implemented');
+function getFactorial(n) {
+  const arr = Array.from({ length: n }, (_, i) => i + 1);
+  return arr.reduce((sum, current) => sum * current);
 }
 
 
