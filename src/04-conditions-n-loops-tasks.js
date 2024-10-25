@@ -223,8 +223,16 @@ function findFirstSingleChar(str) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
-  throw new Error('Not implemented');
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  let open = '(';
+  let close = ')';
+  if (isStartIncluded) {
+    open = '[';
+  }
+  if (isEndIncluded) {
+    close = ']';
+  }
+  return `${open}${Math.min(a, b)}, ${Math.max(a, b)}${close}`;
 }
 
 
@@ -282,8 +290,40 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(ccn) {
+  let res = 0;
+  if (ccn.toString().length % 2 === 0) {
+    ccn.toString().split('').map((elem, ind) => {
+      if (ind % 2 === 0) {
+        let el = Number(elem);
+        if ((el * 2) > 9) {
+          el = el * 2 - 9;
+        } else {
+          el = elem * 2;
+        }
+        res = (res + el) * 1;
+      } else {
+        res += Number(elem);
+      }
+      return res;
+    });
+  } else {
+    ccn.toString().split('').map((elem, ind) => {
+      if (ind % 2 !== 0) {
+        let el = Number(elem);
+        if ((el * 2) > 9) {
+          el = el * 2 - 9;
+        } else {
+          el = elem * 2;
+        }
+        res = (res + el) * 1;
+      } else {
+        res += Number(elem);
+      }
+      return res;
+    });
+  }
+  return res % 10 === 0;
 }
 
 /**
@@ -355,8 +395,8 @@ function isBracketsBalanced(/* str */) {
  *    365, 4  => '11231'
  *    365, 10 => '365'
  */
-function toNaryString(/* num, n */) {
-  throw new Error('Not implemented');
+function toNaryString(num, n) {
+  return num.toString(n);
 }
 
 
